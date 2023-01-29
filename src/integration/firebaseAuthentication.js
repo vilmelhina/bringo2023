@@ -4,7 +4,7 @@ import {getAuth, EmailAuthProvider, onAuthStateChanged, signOut} from "firebase/
 
 const firebaseUI = require('firebaseui');
 
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const ui = new firebaseUI.auth.AuthUI(auth);
 
