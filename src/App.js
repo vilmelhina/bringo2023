@@ -1,10 +1,29 @@
-import './App.css';
+import React from "react";
+import {RecoilRoot} from "recoil";
+import StartPage from "./componentPages/startPagePresenter";
+import {Routes, Route} from "react-router-dom";
+import LoginPage from "./componentPages/loginPagePresenter";
+import AccountPage from "./componentPages/accountPagePresenter";
+import Loading from "./components/loadingPresenter";
+import TopBar from "./components/topBarPresenter";
+import GroupPage from "./componentPages/groupPagePresenter";
 
 function App() {
   return (
-    <div className="App">
-
-    </div>
+      <RecoilRoot>
+        <div className="App">
+          <TopBar/>
+          <React.Suspense fallback={<Loading/>}>
+            <Routes>
+              <Route path ="/" element= {<StartPage/>} />
+              <Route path ="/login" element= {<LoginPage/>} />
+              <Route path ="/account" element= {<AccountPage/>} />
+              <Route path ="/group" element= {<GroupPage/>} />
+              <Route path="*" element={<StartPage/>}/>
+            </Routes>
+          </React.Suspense>
+        </div>
+      </RecoilRoot>
   );
 }
 
