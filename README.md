@@ -15,4 +15,4 @@ This project is currently in development. See wireframes for next milestone belo
 
 
 Editors Note:
-This project is developed for educational purposes. See LICENSE for copyright information.
+This project is developed for educational purposes.
