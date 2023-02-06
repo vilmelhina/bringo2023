@@ -1,16 +1,17 @@
 import React from "react";
 import TopBarView from "./topBarView";
 import {useRecoilValue} from "recoil";
-import {userIdState} from "../model/userAtoms";
+import {userGroupsState, userIdState} from "../model/userAtoms";
 import {Link} from "react-router-dom";
+import {useNavigate} from "react-router";
 
 function TopBar() {
     const userLoggedIn = useRecoilValue(userIdState);
-
+    const groupsAdmin = useRecoilValue(userGroupsState("admins"));
+    const navigate = useNavigate()
     return (
-        <TopBarView userLoggedIn={userLoggedIn}>
-            <Link to="/">Start</Link>
-            {userLoggedIn ? <Link to="/account">Account</Link> : <Link to="/login">Log in</Link>}
+        <TopBarView userLoggedIn={userLoggedIn} navigate={navigate} groups={groupsAdmin}>
+
         </TopBarView>
     )
 }
