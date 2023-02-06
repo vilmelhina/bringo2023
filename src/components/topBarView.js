@@ -1,10 +1,10 @@
 function TopBarView(props) {
     return (
         <div>
-            <h1 id={"siteTitle"}>BRINGO</h1>
-            <button onClick={goHomeACB}>Start</button>
-            {props.userLoggedIn ? <button onClick={accountClickACB}>Account</button> :
-                <button onClick={accountClickACB}>Log in</button>}
+            <h1 id="siteTitle">BRINGO</h1>
+            {props.getLink("/start", "start")}
+            {props.userLoggedIn ? props.getLink("/account", "account") :
+                props.getLink("/login", "log in")}
             <div className="groupDropdown">
                 <button className="dropButton">Groups</button>
                 <div className="dropdownContent">
@@ -17,17 +17,9 @@ function TopBarView(props) {
         </div>
     )
 
-    function goHomeACB() {
-        props.navigate("/");
-    }
-
-    function accountClickACB() {
-        props.userLoggedIn ? props.navigate("/account") : props.navigate("/login")
-    }
-
     function renderGroupOptionsCB(group) {
         return (
-            <a onClick={() => {props.navigate("/" + group.name)}}>{group.name}</a>
+            props.getLink("group", group.name, group.id)
         )
     }
 }
