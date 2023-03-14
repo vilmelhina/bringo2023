@@ -12,17 +12,22 @@ function App() {
   return (
       <RecoilRoot>
         <div className="App">
-
-          <React.Suspense fallback={<Loading/>}>
-              <TopBar/>
-            <Routes>
-              <Route path ="/" element= {<StartPage/>} />
-              <Route path ="/login" element= {<LoginPage/>} />
-              <Route path ="/account" element= {<AccountPage/>} />
-              <Route path ="/group" element= {<GroupPage/>} />
-              <Route path="*" element={<StartPage/>}/>
-            </Routes>
-          </React.Suspense>
+            <div id="container">
+                <React.Suspense fallback={<Loading/>}>
+                    <TopBar/>
+                    <div id="content">
+                        <React.Suspense fallback={<Loading/>}>
+                        <Routes>
+                            <Route path ="/" element= {<StartPage/>} />
+                            <Route path ="/login" element= {<LoginPage/>} />
+                            <Route path ="/account" element= {<AccountPage/>} />
+                            <Route path ="/group" element= {<GroupPage/>} />
+                            <Route path="*" element={<StartPage/>}/>
+                        </Routes>
+                        </React.Suspense>
+                    </div>
+                </React.Suspense>
+            </div>
         </div>
       </RecoilRoot>
   );
