@@ -12,8 +12,9 @@ function App() {
   return (
       <RecoilRoot>
         <div className="App">
-          <TopBar/>
+
           <React.Suspense fallback={<Loading/>}>
+              <TopBar/>
             <Routes>
               <Route path ="/" element= {<StartPage/>} />
               <Route path ="/login" element= {<LoginPage/>} />
