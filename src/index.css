@@ -1,4 +1,5 @@
 :root {
+  --lighterBackgroundColor: #eee;
   --lightBackgroundColor: #ddd;
   --darkBackgroundColor: #ccc;
 }
@@ -64,14 +65,17 @@ code {
 }
 
 #content {
-  margin-top:150px;
+  margin-top:100px;
+}
+
+/* account page */
+#account-container {
+  margin-top:50px;
   display: grid;
   padding:30px;
   grid-template-columns: minmax(300px, 1000px);
   justify-content: center;
 }
-
-/* account page */
 #account-container #name-and-picture {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -105,4 +109,57 @@ code {
 #account-container #buttons {
   margin-top:20px;
   text-align: center;
+  align-items: stretch;
+}
+
+#group-container {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  min-height: calc(100vh - 100px);
+}
+#group-container .board-container {
+  display: grid;
+  justify-content: center;
+}
+#group-container .sidebar {
+  background: var(--lighterBackgroundColor);
+  padding: 20px;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap:3px;
+}
+.board .cell {
+  display: grid;
+  justify-content: center;
+  align-content:center;
+}
+.board .marked {
+  background: var(--darkBackgroundColor);
+}
+.board .unmarked {
+  background: var(--lightBackgroundColor);
+}
+#group-container .user-board {
+  width:40vw;
+  height: 40vw;
+}
+#group-container .friend-board {
+  width:60px; height: 60px;
+}
+#group-container .friends-progress-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  gap:10px;
+}
+#group-container .button-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+#group-container .button-container button {
+  border:0;
+  background: var(--darkBackgroundColor);
+  padding:20px 0;
 }
