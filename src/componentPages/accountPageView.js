@@ -1,4 +1,7 @@
+import picture from '../temporary_picture.png';
 function AccountPageView(props) {
+
+    // TODO: fix group dropdown going outside window
 
     function renderGroups() {
         if(props.groupsMember || props.groupsAdmin)
@@ -13,15 +16,25 @@ function AccountPageView(props) {
     }
 
     return (
-        <div>
-            <p>{props.userId}</p>
-            <p>{props.userEmail}</p>
-            <p>{props.userDisplayName}</p>
-            <h2>Groups:</h2>
-            <div>{renderGroups()}</div>
-            <p>
+        <div id="account-container">
+            <div id="name-and-picture">
+                <img src={picture} alt="temp"/>
+                <h2 className="display-name">{props.userDisplayName}</h2>
+                <span className="email">{props.userEmail}</span>
+            </div>
+            <div id="options">
+                <div className="option-group">
+                        <h3>Account Settings</h3>
+                        <p>Not implemented</p>
+                </div>
+                <div className="option-group">
+                    <h3>Manage Groups</h3>
+                    {renderGroups()}
+                </div>
+            </div>
+            <div id="buttons">
                 <button onClick={props.onLogOut}>Log out</button>
-            </p>
+            </div>
         </div>
     );
 }

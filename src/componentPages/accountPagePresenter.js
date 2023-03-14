@@ -10,14 +10,16 @@ import {
 import {logOut} from "../integration/firebaseAuthentication";
 
 function AccountPage() {
+
+    // TODO: add option to delete account
+    // TODO: let user change image, email, password, display name
+    // TODO: option to leave group
+
     const userId = useRecoilValue(userIdState);
     const userDisplayName = useRecoilValue(userDisplayNameState);
     const userEmail = useRecoilValue(userEmailState);
     const groupsAdmin = useRecoilValue(userGroupsState("admins"));
     const groupsMember = useRecoilValue(userGroupsState("members"));
-
-    console.log(groupsAdmin)
-    console.log(groupsMember)
 
     function onSetGroup(group) {
         console.log(group)
