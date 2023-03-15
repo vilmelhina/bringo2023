@@ -1,6 +1,5 @@
 import BingoBoard from "../components/bingoBoardPresenter";
-
-function GroupPageView(props){
+function GroupPageSidebarView(props){
 
     function displayFriendsProgressCB(friend, index) {
         return (
@@ -18,11 +17,6 @@ function GroupPageView(props){
     }
 
     return (
-        <div id="group-container">
-            <div className="board-container">
-                <h2>{props.groupName}</h2>
-                <BingoBoard classNames="user-board" onCellClicked={props.cellToggled} cells={props.userCells}/>
-            </div>
             <div className="sidebar">
                 <div className="section">
                     <h3>Friends progress</h3>
@@ -46,9 +40,8 @@ function GroupPageView(props){
                             <button>Settings</button>
                         </div>
                     </div>
-                 : ""}
+                    : ""}
             </div>
-        </div>
     );
 }
-export default GroupPageView;
+export default GroupPageSidebarView;

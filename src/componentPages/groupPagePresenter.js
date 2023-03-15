@@ -1,5 +1,6 @@
 import React from "react";
-import GroupPageView from "./groupPageView";
+import GroupPageBingoView from "../components/groupPageBingoView";
+import GroupPageSidebarView from "../components/groupPageSidebarView";
 
 function GroupPage() {
 
@@ -24,13 +25,26 @@ function GroupPage() {
         console.log("clicked " + index)
     }
 
-    return <GroupPageView
+    return <div id="group-container">
+        <GroupPageBingoView
+            groupName = {groupName}
+            userCells = {userCells}
+            cellToggled = {cellToggled}
+        />
+        <GroupPageSidebarView
+            groupName = {groupName}
+            friendsProgress = {friendsProgress}
+            scoreBoard = {scoreBoard}
+            role = {role}
+        />
+    </div>
+    /*return <GroupPageView
                 groupName = {groupName}
                 userCells = {userCells}
                 friendsProgress = {friendsProgress}
                 scoreBoard = {scoreBoard}
                 role = {role}
                 cellToggled = {cellToggled}
-            />
+            />*/
 }
 export default GroupPage;
