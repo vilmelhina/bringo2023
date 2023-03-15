@@ -117,7 +117,7 @@ code {
   grid-template-columns: 3fr 1fr;
   min-height: calc(100vh - 100px);
 }
-#group-container .board-container {
+#group-container #group-main-content > * {
   display: grid;
   justify-content: center;
 }

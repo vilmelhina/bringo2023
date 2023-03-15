@@ -1,8 +1,12 @@
 import React from "react";
 import GroupPageBingoView from "../components/groupPageBingoView";
 import GroupPageSidebarView from "../components/groupPageSidebarView";
+import GroupPageHandleMembersView from "../components/groupPageHandleMembersView";
+import GroupPageHandleCellsView from "../components/groupPageHandleCellsView";
+import GroupPageSettingsView from "../components/groupPageSettingsView";
 
 function GroupPage() {
+    const [componentIndex, setComponentIndex] = React.useState(0);
 
     // TODO: actual values instead of dummy values
 
@@ -25,26 +29,33 @@ function GroupPage() {
         console.log("clicked " + index)
     }
 
-    return <div id="group-container">
+    const components = [
         <GroupPageBingoView
             groupName = {groupName}
             userCells = {userCells}
             cellToggled = {cellToggled}
-        />
+        />,
+        <GroupPageHandleMembersView groupName = {groupName} />,
+        <GroupPageHandleCellsView groupName = {groupName} />,
+        <GroupPageSettingsView groupName = {groupName} />,
+    ]
+
+    console.log(componentIndex)
+    console.log(components[componentIndex])
+
+    return <div id="group-container">
+        <div id="group-main-content">
+            {components[componentIndex]}
+        </div>
         <GroupPageSidebarView
             groupName = {groupName}
             friendsProgress = {friendsProgress}
             scoreBoard = {scoreBoard}
             role = {role}
+            showHandleMembers = {() => {setComponentIndex(1)}}
+            showHandleCells = {() => {setComponentIndex(2)}}
+            showSettings = {() => {setComponentIndex(3)}}
         />
     </div>
-    /*return <GroupPageView
-                groupName = {groupName}
-                userCells = {userCells}
-                friendsProgress = {friendsProgress}
-                scoreBoard = {scoreBoard}
-                role = {role}
-                cellToggled = {cellToggled}
-            />*/
 }
 export default GroupPage;

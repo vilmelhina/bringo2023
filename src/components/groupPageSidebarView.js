@@ -34,10 +34,10 @@ function GroupPageSidebarView(props){
                     <div className="section">
                         <h3>Admin</h3>
                         <div className="button-container">
-                            <button>Handle members</button>
-                            <button>Handle bingo cells</button>
+                            <button onClick={props.showHandleMembers}>Handle members</button>
+                            <button onClick={props.showHandleCells}>Handle bingo cells</button>
                             <button>Generate new boards</button>
-                            <button>Settings</button>
+                            <button onClick={props.showSettings}>Settings</button>
                         </div>
                     </div>
                     : ""}
