@@ -1,27 +1,13 @@
+import BingoBoard from "../components/bingoBoardPresenter";
+
 function GroupPageView(props){
 
-    function doneClass(done) {
-        if(done) return "cell marked";
-        return "cell unmarked";
-    }
-
-    function displayCellCB(cell, index) {
-        return (
-            <div className={doneClass(cell.done)} key={index}
-                 onClick={() => {props.cellToggled(index)}}>
-                {cell.text}
-            </div>)
-    }
-
     function displayFriendsProgressCB(friend, index) {
-        function displayFriendCellCB(done, index) {
-            return <div className={doneClass(done)} key={"cell" + index}/>
-        }
         return (
             <div className="friend" key={index}>
-                <div className="board friend-board">
-                    {friend.progress.map(displayFriendCellCB)}
-                </div>
+                <BingoBoard classNames="friend-board"
+                            onCellClicked={() => {}}
+                            cells={friend.progress.map(x => {return {text: "", done: x}})}/>
                 {friend.name}
             </div>
         )
@@ -35,9 +21,7 @@ function GroupPageView(props){
         <div id="group-container">
             <div className="board-container">
                 <h2>{props.groupName}</h2>
-                <div className="board user-board">
-                    {props.userCells.map(displayCellCB)}
-                </div>
+                <BingoBoard classNames="user-board" onCellClicked={props.cellToggled} cells={props.userCells}/>
             </div>
             <div className="sidebar">
                 <div className="section">
