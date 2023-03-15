@@ -35,13 +35,10 @@ function GroupPage() {
             userCells = {userCells}
             cellToggled = {cellToggled}
         />,
-        <GroupPageHandleMembersView groupName = {groupName} />,
-        <GroupPageHandleCellsView groupName = {groupName} />,
-        <GroupPageSettingsView groupName = {groupName} />,
+        <GroupPageHandleMembersView groupName = {groupName} close = {() => {setComponentIndex(0)}}/>,
+        <GroupPageHandleCellsView groupName = {groupName} close = {() => {setComponentIndex(0)}}/>,
+        <GroupPageSettingsView groupName = {groupName} close = {() => {setComponentIndex(0)}}/>,
     ]
-
-    console.log(componentIndex)
-    console.log(components[componentIndex])
 
     return <div id="group-container">
         <div id="group-main-content">
