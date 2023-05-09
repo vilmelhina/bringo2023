@@ -12,7 +12,7 @@ function TopBar() {
     const navigate = useNavigate;
 
     function getLink(path, name, id) {
-        return <Link to={path} key={id}>{name}</Link>
+        return <Link to={id ? (path + "/" + id) : path} key={id}>{name}</Link>
     }
 
     return (

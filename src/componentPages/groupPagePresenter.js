@@ -4,9 +4,15 @@ import GroupPageSidebarView from "../components/groupPageSidebarView";
 import GroupPageHandleMembersView from "../components/groupPageHandleMembersView";
 import GroupPageHandleCellsView from "../components/groupPageHandleCellsView";
 import GroupPageSettingsView from "../components/groupPageSettingsView";
+import {useParams} from "react-router-dom";
+import {useRecoilValue} from "recoil";
+import {userGroupsState} from "../model/userAtoms";
 
 function GroupPage() {
     const [componentIndex, setComponentIndex] = React.useState(0);
+    const groupsAdmin = useRecoilValue(userGroupsState("admins"));
+    const groupsMember = useRecoilValue(userGroupsState("members"));
+    const [groupId,] = React.useState(useParams().id)
 
     // TODO: actual values instead of dummy values
 
@@ -24,6 +30,14 @@ function GroupPage() {
     ]
     const role = "admin";
 
+    function userInGroup() {
+        return [...groupsMember.map(x => x.id), ...groupsAdmin.map(x => x.id)].find(x => x===groupId)
+    }
+
+    function userNotInGroup() {
+        return <div>You do not belong to this group</div>
+    }
+
     function cellToggled(index) {
         // TODO: update state
         console.log("clicked " + index)
@@ -40,7 +54,7 @@ function GroupPage() {
         <GroupPageSettingsView groupName = {groupName} close = {() => {setComponentIndex(0)}}/>,
     ]
 
-    return <div id="group-container">
+    return userInGroup() ? <div id="group-container">
         <div id="group-main-content">
             {components[componentIndex]}
         </div>
@@ -53,6 +67,6 @@ function GroupPage() {
             showHandleCells = {() => {setComponentIndex(2)}}
             showSettings = {() => {setComponentIndex(3)}}
         />
-    </div>
+    </div> : userNotInGroup()
 }
 export default GroupPage;

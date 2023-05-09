@@ -6,13 +6,12 @@ function TopBarView(props) {
                 {props.getLink("/start", "start")}
                 {props.userLoggedIn ? props.getLink("/account", "account") :
                     props.getLink("/login", "log in")}
-                <div className="group-dropdown">
+                {props.userLoggedIn ? <div className="group-dropdown">
                     <span className="dropdown-button">groups</span>
                     <div className="dropdown-content">
-                        {props.userLoggedIn ?
-                            props.groups.map(renderGroupOptionsCB) : ""}
+                        {props.groups.map(renderGroupOptionsCB)}
                     </div>
-                </div>
+                </div> : ""}
             </div>
         </div>
     )
