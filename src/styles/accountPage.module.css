@@ -1,0 +1,47 @@
+@import './vars.css';
+
+#accountContainer {
+    margin-top:50px;
+    display: grid;
+    padding:30px;
+    grid-template-columns: minmax(300px, 1000px);
+    justify-content: center;
+}
+
+#accountContainer #nameAndPicture {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr 1fr;
+    justify-content: center;
+    gap:3px 20px;
+    grid-template-areas: "image name"
+                        "image email";
+}
+
+#accountContainer #nameAndPicture img {
+    border-radius: 50%;
+    grid-area: image;
+}
+
+#accountContainer h2 {
+    margin:0; margin-block: 0;
+    align-self: end;
+}
+
+#accountContainer #options {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap:20px;
+    margin-top:20px;
+}
+
+#accountContainer .optionGroup {
+    background: var(--lightBackgroundColor);
+    padding:20px;
+}
+
+#accountContainer #buttons {
+    margin-top:20px;
+    text-align: center;
+    align-items: stretch;
+}

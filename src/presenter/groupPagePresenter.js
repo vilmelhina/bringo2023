@@ -8,6 +8,7 @@ import {useParams} from "react-router-dom";
 import {useRecoilValue} from "recoil";
 import {userGroupsState} from "../model/userAtoms";
 import {groupState} from "../model/groupAtoms";
+import styles from "../styles/groupPage.module.css";
 
 function GroupPage() {
     const [componentIndex, setComponentIndex] = React.useState(0);
@@ -58,8 +59,8 @@ function GroupPage() {
         <GroupPageSettingsView groupName = {groupName} close = {() => {setComponentIndex(0)}}/>,
     ]
 
-    return userInGroup() ? <div id="group-container">
-        <div id="group-main-content">
+    return userInGroup() ? <div id={styles.groupContainer}>
+        <div id={styles.groupMainContent}>
             {components[componentIndex]}
         </div>
         <GroupPageSidebarView

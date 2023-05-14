@@ -1,14 +1,16 @@
+import styles from "../styles/topBar.module.css";
+
 function TopBarView(props) {
     return (
-        <div id="top-bar">
-            <h1 id="site-title">BRINGO</h1>
-            <div id="top-bar-menu">
+        <div id={styles.topBar}>
+            <h1>BRINGO</h1>
+            <div id={styles.topBarMenu}>
                 {props.getLink("/start", "start")}
                 {props.userLoggedIn ? props.getLink("/account", "account") :
                     props.getLink("/login", "log in")}
-                {props.userLoggedIn ? <div className="group-dropdown">
-                    <span className="dropdown-button">groups</span>
-                    <div className="dropdown-content">
+                {props.userLoggedIn ? <div className={styles.groupDropdown}>
+                    <span className={styles.dropdownButton}>groups</span>
+                    <div className={styles.dropdownContent}>
                         {props.groups.map(renderGroupOptionsCB)}
                     </div>
                 </div> : ""}

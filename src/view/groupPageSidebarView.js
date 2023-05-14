@@ -1,10 +1,12 @@
 import BingoBoard from "../presenter/bingoBoardPresenter";
+import styles from "../styles/groupPage.module.css";
+
 function GroupPageSidebarView(props){
 
     function displayFriendsProgressCB(friend, index) {
         return (
             <div className="friend" key={index}>
-                <BingoBoard classNames="friend-board"
+                <BingoBoard classNames={styles.friendBoard}
                             onCellClicked={() => {}}
                             cells={friend.progress.map(x => {return {text: "", done: x}})}/>
                 {friend.name}
@@ -17,23 +19,23 @@ function GroupPageSidebarView(props){
     }
 
     return (
-            <div className="sidebar">
-                <div className="section">
+            <div className={styles.sidebar}>
+                <div className={styles.section}>
                     <h3>Friends progress</h3>
-                    <div className="friends-progress-container">
+                    <div className={styles.friendsProgressContainer}>
                         {props.friendsProgress.map(displayFriendsProgressCB)}
                     </div>
                 </div>
-                <div className="section">
+                <div className={styles.section}>
                     <h3>Group scoreboard</h3>
-                    <ol className="score-board">
+                    <ol className={styles.scoreBoard}>
                         {props.scoreBoard.map(displayScoreCB)}
                     </ol>
                 </div>
                 {props.role === "admin" ? // TODO: actions for buttons
-                    <div className="section">
+                    <div className={styles.section}>
                         <h3>Admin</h3>
-                        <div className="button-container">
+                        <div className={styles.buttonContainer}>
                             <button onClick={props.showHandleMembers}>Handle members</button>
                             <button onClick={props.showHandleCells}>Handle bingo cells</button>
                             <button>Generate new boards</button>

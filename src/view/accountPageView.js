@@ -1,4 +1,5 @@
 import picture from '../temporary_picture.png';
+import styles from "../styles/accountPage.module.css";
 function AccountPageView(props) {
 
     // TODO: fix group dropdown going outside window
@@ -16,18 +17,18 @@ function AccountPageView(props) {
     }
 
     return (
-        <div id="account-container">
-            <div id="name-and-picture">
+        <div id={styles.accountContainer}>
+            <div id={styles.nameAndPicture}>
                 <img src={picture} alt="temp"/>
-                <h2 className="display-name">{props.userDisplayName}</h2>
-                <span className="email">{props.userEmail}</span>
+                <h2 className={styles.displayName}>{props.userDisplayName}</h2>
+                <span className={styles.email}>{props.userEmail}</span>
             </div>
-            <div id="options">
-                <div className="option-group">
+            <div id={styles.options}>
+                <div className={styles.optionGroup}>
                         <h3>Account Settings</h3>
                         <p>Not implemented</p>
                 </div>
-                <div className="option-group">
+                <div className={styles.optionGroup}>
                     <h3>Manage Groups</h3>
                     {renderGroups()}
                 </div>

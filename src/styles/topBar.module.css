@@ -1,0 +1,49 @@
+@import './vars.css';
+
+#topBar {
+    background: var(--lightBackgroundColor);
+    position: fixed;
+    width:100%; height: 100px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: auto auto;
+    top:0;
+    padding:0 30px;
+    align-content: center;
+}
+
+#topBarMenu {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    align-content: center;
+    justify-content: right;
+    gap: 20px;
+}
+
+.dropdownContent{
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.groupDropdown:hover .dropdownContent {
+    display: block;
+    padding:10px;
+}
+
+.dropdownContent a {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#topBarMenu > a, .dropdownButton {
+    text-decoration: none;
+    color:black;
+    background: var(--darkBackgroundColor);
+    padding:3px 5px;
+    height: auto;
+    display: block;
+}

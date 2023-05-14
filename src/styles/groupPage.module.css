@@ -1,0 +1,37 @@
+#groupContainer {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    min-height: calc(100vh - 100px);
+}
+
+#groupContainer #groupMainContent > * {
+    display: grid;
+    justify-content: center;
+}
+
+#groupContainer .sidebar {
+    background: var(--lighterBackgroundColor);
+    padding: 20px;
+}
+
+#groupContainer .userBoard {
+    width:40vw;
+    height: 40vw;
+}
+#groupContainer .friendBoard {
+    width:60px; height: 60px;
+}
+#groupContainer .friendsProgressContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    gap:10px;
+}
+#groupContainer .buttonContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+#groupContainer .buttonContainer button {
+    border:0;
+    background: var(--darkBackgroundColor);
+    padding:20px 0;
+}
