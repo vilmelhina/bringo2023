@@ -5,9 +5,9 @@ import GroupPageHandleMembersView from "../view/groupPageHandleMembersView";
 import GroupPageHandleCellsView from "../view/groupPageHandleCellsView";
 import GroupPageSettingsView from "../view/groupPageSettingsView";
 import {useParams} from "react-router-dom";
-import {useRecoilValue} from "recoil";
+import {useRecoilState, useRecoilValue} from "recoil";
 import {userGroupsState} from "../model/userAtoms";
-import {groupState} from "../model/groupAtoms";
+import {groupCellsState, groupState} from "../model/groupAtoms";
 import styles from "../styles/groupPage.module.css";
 
 function GroupPage() {
@@ -15,9 +15,7 @@ function GroupPage() {
     const groups = useRecoilValue(userGroupsState);
     const {id} = useParams();
     const group = useRecoilValue(groupState(id))
-
-    console.log(id)
-    console.log(group)
+    const [cells, setCells] = useRecoilState(groupCellsState(id))
 
     // TODO: actual values instead of dummy values
 
@@ -33,7 +31,6 @@ function GroupPage() {
         {name: "name2", score: 333},
         {name: "name3", score: 888}
     ]
-    const role = "admin";
 
     function userInGroup() {
         return groups.map(x => x.id)
@@ -48,15 +45,35 @@ function GroupPage() {
         console.log("clicked " + index)
     }
 
+    function addCellCB(cell) {
+        setCells([...cells, cell])
+    }
+
+    function removeCellCB(cell) {
+        setCells(cells.filter((elem) => elem !== cell))
+    }
+
     const components = [
         <GroupPageBingoView
             groupName = {groupName}
             userCells = {userCells}
             cellToggled = {cellToggled}
         />,
-        <GroupPageHandleMembersView groupName = {groupName} close = {() => {setComponentIndex(0)}}/>,
-        <GroupPageHandleCellsView groupName = {groupName} close = {() => {setComponentIndex(0)}}/>,
-        <GroupPageSettingsView groupName = {groupName} close = {() => {setComponentIndex(0)}}/>,
+        <GroupPageHandleMembersView
+            groupName = {groupName}
+            close = {() => {setComponentIndex(0)}}
+        />,
+        <GroupPageHandleCellsView
+            groupName = {groupName}
+            close = {() => {setComponentIndex(0)}}
+            cells = {cells}
+            addCell = {addCellCB}
+            removeCell = {removeCellCB}
+        />,
+        <GroupPageSettingsView
+            groupName = {groupName}
+            close = {() => {setComponentIndex(0)}}
+        />,
     ]
 
     return userInGroup() ? <div id={styles.groupContainer}>
@@ -67,7 +84,6 @@ function GroupPage() {
             groupName = {groupName}
             friendsProgress = {friendsProgress}
             scoreBoard = {scoreBoard}
-            role = {role}
             showHandleMembers = {() => {setComponentIndex(1)}}
             showHandleCells = {() => {setComponentIndex(2)}}
             showSettings = {() => {setComponentIndex(3)}}

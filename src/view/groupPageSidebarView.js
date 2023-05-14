@@ -32,17 +32,15 @@ function GroupPageSidebarView(props){
                         {props.scoreBoard.map(displayScoreCB)}
                     </ol>
                 </div>
-                {props.role === "admin" ? // TODO: actions for buttons
-                    <div className={styles.section}>
-                        <h3>Admin</h3>
-                        <div className={styles.buttonContainer}>
-                            <button onClick={props.showHandleMembers}>Handle members</button>
-                            <button onClick={props.showHandleCells}>Handle bingo cells</button>
-                            <button>Generate new boards</button>
-                            <button onClick={props.showSettings}>Settings</button>
-                        </div>
+                <div className={styles.section}>
+                    <h3>Admin</h3>
+                    <div className={styles.buttonContainer}>
+                        <button onClick={props.showHandleMembers}>Handle members</button>
+                        <button onClick={props.showHandleCells}>Handle bingo cells</button>
+                        <button>Generate new boards</button>
+                        <button onClick={props.showSettings}>Settings</button>
                     </div>
-                    : ""}
+                </div>
             </div>
     );
 }

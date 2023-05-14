@@ -1,4 +1,4 @@
-import { getFirestore, collection, query, where, getDocs, getDoc, doc } from "firebase/firestore";
+import {collection, doc, getDoc, getDocs, getFirestore, onSnapshot, query, updateDoc, where, setDoc} from "firebase/firestore";
 import {app} from "./firebaseAuthentication.js";
 
 // Initialize Cloud Firestore and get a reference to the service
@@ -30,4 +30,22 @@ export async function getGroup(id) { // TODO: possibly rewrite
         // TODO: error handling?
         return "no doc"
     }
+}
+
+export function setGroupField(id, data, path) {
+    let obj = {};
+    obj[path] = data;
+    return updateDoc(doc(database, "groups", id), obj).catch(console.log);
+}
+
+export function subscribeToGroup(id, path, callback) {
+    return onSnapshot(doc(database, "groups", id), (doc) => callback(doc.data()[path]))
+}
+
+export async function createGroup(name, userID) {
+    await setDoc(doc(database, "groups"), {
+        members: [{id: userID, cells: [], cellsChecked: []}],
+        cells: [],
+        name: name
+    });
 }
