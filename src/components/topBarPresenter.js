@@ -7,8 +7,7 @@ import {Link} from "react-router-dom";
 
 function TopBar() {
     const userLoggedIn = useRecoilValue(userIdState);
-    const groupsAdmin = useRecoilValue(userGroupsState("admins"));
-    const groupsMember = useRecoilValue(userGroupsState("members"));
+    const groups = useRecoilValue(userGroupsState);
     const navigate = useNavigate;
 
     function getLink(path, name, id) {
@@ -16,7 +15,7 @@ function TopBar() {
     }
 
     return (
-        <TopBarView userLoggedIn={userLoggedIn} navigate={navigate} groups={[...groupsAdmin, ...groupsMember]} getLink={getLink}/>
+        <TopBarView userLoggedIn={userLoggedIn} navigate={navigate} groups={groups} getLink={getLink}/>
     )
 }
 export default TopBar;

@@ -18,8 +18,7 @@ function AccountPage() {
     const userId = useRecoilValue(userIdState);
     const userDisplayName = useRecoilValue(userDisplayNameState);
     const userEmail = useRecoilValue(userEmailState);
-    const groupsAdmin = useRecoilValue(userGroupsState("admins"));
-    const groupsMember = useRecoilValue(userGroupsState("members"));
+    const groups = useRecoilValue(userGroupsState);
 
     function onSetGroup(group) {
         console.log(group)
@@ -29,8 +28,7 @@ function AccountPage() {
                 userId={userId}
                 userEmail={userEmail}
                 userDisplayName={userDisplayName}
-                groupsAdmin={groupsAdmin}
-                groupsMember={groupsMember}
+                groups={groups}
                 onSetGroup={onSetGroup}
                 onLogOut={logOut}/>
 

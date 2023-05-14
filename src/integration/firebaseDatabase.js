@@ -1,4 +1,4 @@
-import { getFirestore, collection, query, where, getDocs } from "firebase/firestore";
+import { getFirestore, collection, query, where, getDocs, getDoc, doc } from "firebase/firestore";
 import {app} from "./firebaseAuthentication.js";
 
 // Initialize Cloud Firestore and get a reference to the service
@@ -17,4 +17,17 @@ export async function getUserGroups(userID, role) { // TODO: possibly rewrite
         res = [...res, {id: doc.id,...doc.data()}];
     });
     return res;
+}
+
+export async function getGroup(id) { // TODO: possibly rewrite
+    console.log("searching for group " + id)
+    const docRef = doc(database, "groups", id);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+        return docSnap.data();
+    } else {
+        // docSnap.data() will be undefined in this case
+        // TODO: error handling?
+        return "no doc"
+    }
 }

@@ -7,16 +7,20 @@ import GroupPageSettingsView from "../components/groupPageSettingsView";
 import {useParams} from "react-router-dom";
 import {useRecoilValue} from "recoil";
 import {userGroupsState} from "../model/userAtoms";
+import {groupState} from "../model/groupAtoms";
 
 function GroupPage() {
     const [componentIndex, setComponentIndex] = React.useState(0);
-    const groupsAdmin = useRecoilValue(userGroupsState("admins"));
-    const groupsMember = useRecoilValue(userGroupsState("members"));
-    const [groupId,] = React.useState(useParams().id)
+    const groups = useRecoilValue(userGroupsState);
+    const {id} = useParams();
+    const group = useRecoilValue(groupState(id))
+
+    console.log(id)
+    console.log(group)
 
     // TODO: actual values instead of dummy values
 
-    const groupName = "groupname";
+    const groupName = group.name;
     const userCells = [...Array(25).keys()].map(element => {return {text: "cell" + element, done: false}});
     const friendsProgress = [
         {name: "name1", progress: [0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0]},
@@ -31,7 +35,7 @@ function GroupPage() {
     const role = "admin";
 
     function userInGroup() {
-        return [...groupsMember.map(x => x.id), ...groupsAdmin.map(x => x.id)].find(x => x===groupId)
+        return groups.map(x => x.id)
     }
 
     function userNotInGroup() {

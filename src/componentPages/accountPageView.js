@@ -4,8 +4,8 @@ function AccountPageView(props) {
     // TODO: fix group dropdown going outside window
 
     function renderGroups() {
-        if(props.groupsMember || props.groupsAdmin)
-            return [...props.groupsMember.map(renderGroup), ...props.groupsAdmin.map(renderGroup)]
+        if(props.groups)
+            return props.groups.map(renderGroup)
         else return "no groups"
     }
 

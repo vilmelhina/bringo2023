@@ -1,4 +1,4 @@
-import {atom, selector, selectorFamily} from 'recoil';
+import {atom, selector} from 'recoil';
 import {subscribeToAuthChange} from "../integration/firebaseAuthentication";
 import {getUserGroups} from "../integration/firebaseDatabase";
 
@@ -41,11 +41,11 @@ export const userDisplayNameState = selector({
     }
 })
 
-export const userGroupsState = selectorFamily({
+export const userGroupsState = selector({
     key: 'userGroups',
-    get: (role) => async ({get}) => {
+    get: async ({get}) => {
         if (get(userIdState))
-            return await getUserGroups(get(userIdState), role)
+            return await getUserGroups(get(userIdState), "members")
         else return []
     }
 })
