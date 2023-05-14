@@ -1,12 +1,12 @@
 import React from "react";
 import {RecoilRoot} from "recoil";
-import StartPage from "./componentPages/startPagePresenter";
+import StartPage from "./presenter/startPagePresenter";
 import {Routes, Route} from "react-router-dom";
-import LoginPage from "./componentPages/loginPagePresenter";
-import AccountPage from "./componentPages/accountPagePresenter";
-import Loading from "./components/loadingPresenter";
-import TopBar from "./components/topBarPresenter";
-import GroupPage from "./componentPages/groupPagePresenter";
+import LoginPage from "./presenter/loginPagePresenter";
+import AccountPage from "./presenter/accountPagePresenter";
+import Loading from "./presenter/loadingPresenter";
+import TopBar from "./presenter/topBarPresenter";
+import GroupPage from "./presenter/groupPagePresenter";
 
 function App() {
   return (

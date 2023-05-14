@@ -1,5 +1,5 @@
 import React from "react";
-import BingoBoardView from "./bingoBoardView";
+import BingoBoardView from "../view/bingoBoardView";
 function BingoBoard(props) {
 
     return <BingoBoardView

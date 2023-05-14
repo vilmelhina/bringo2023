@@ -1,5 +1,5 @@
 import React from "react";
-import LoginPageView from "./loginPageView";
+import LoginPageView from "../view/loginPageView";
 import {uiConfig, auth} from "../integration/firebaseAuthentication";
 import {StyledFirebaseAuth} from "react-firebaseui";
 import {userIdState} from "../model/userAtoms";

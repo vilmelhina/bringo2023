@@ -1,5 +1,5 @@
 import React from "react";
-import AccountPageView from "./accountPageView";
+import AccountPageView from "../view/accountPageView";
 import {useRecoilValue} from "recoil";
 import {
     userDisplayNameState,

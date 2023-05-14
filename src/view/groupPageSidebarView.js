@@ -1,4 +1,4 @@
-import BingoBoard from "../components/bingoBoardPresenter";
+import BingoBoard from "../presenter/bingoBoardPresenter";
 function GroupPageSidebarView(props){
 
     function displayFriendsProgressCB(friend, index) {

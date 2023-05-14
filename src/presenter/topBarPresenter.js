@@ -1,5 +1,5 @@
 import React from "react";
-import TopBarView from "./topBarView";
+import TopBarView from "../view/topBarView";
 import {useRecoilValue} from "recoil";
 import {userGroupsState, userIdState} from "../model/userAtoms";
 import {useNavigate} from "react-router";

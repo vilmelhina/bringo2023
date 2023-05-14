@@ -1,5 +1,5 @@
 import React from "react";
-import StartPageView from "./startPageView";
+import StartPageView from "../view/startPageView";
 
 function StartPage() {
 

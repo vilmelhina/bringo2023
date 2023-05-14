@@ -1,5 +1,5 @@
 import React from "react";
-import LoadingView from "./loadingView";
+import LoadingView from "../view/loadingView";
 
 function Loading() {
     return <LoadingView/>
