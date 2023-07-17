@@ -1,4 +1,4 @@
-import {collection, doc, getDoc, getDocs, getFirestore, onSnapshot, query, updateDoc, where, setDoc} from "firebase/firestore";
+import {collection, doc, getDoc, getDocs, getFirestore, onSnapshot, query, updateDoc, where, addDoc} from "firebase/firestore";
 import {app} from "./firebaseAuthentication.js";
 
 // Initialize Cloud Firestore and get a reference to the service
@@ -10,7 +10,7 @@ const groups = collection(database, "groups");
 export async function getUserGroups(userID, role) { // TODO: possibly rewrite
     console.log("searching for " + userID + " in " + role)
     // const querySnapshot = await getDocs(query(userGroups, where("user_id", "==", userID)));
-    const querySnapshot = await getDocs(query(groups, where(role, "array-contains", userID)))
+    const querySnapshot = await getDocs(query(collection(database, "groups/"), where(role, "array-contains", userID)))
     let res = [];
     querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
@@ -43,9 +43,15 @@ export function subscribeToGroup(id, path, callback) {
 }
 
 export async function createGroup(name, userID) {
-    await setDoc(doc(database, "groups"), {
-        members: [{id: userID, cells: [], cellsChecked: []}],
+    await addDoc(collection(database, "groups"), {
+        members: [userID],
         cells: [],
-        name: name
+        name: name,
+        current_game: null,
+        game_history: []
     });
+}
+
+export async function startGame(members, cells,) {
+    //let memberData = members.map((uid) => {return {user: uid, cells: generateCells()}})
 }
