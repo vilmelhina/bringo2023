@@ -9,6 +9,7 @@ import {useRecoilState, useRecoilValue} from "recoil";
 import {userGroupsState} from "../model/userAtoms";
 import {groupCellsState, groupState} from "../model/groupAtoms";
 import styles from "../styles/groupPage.module.css";
+import {startGame} from "../integration/firebaseDatabase";
 
 function GroupPage() {
     const [componentIndex, setComponentIndex] = React.useState(0);
@@ -53,6 +54,11 @@ function GroupPage() {
         setCells(cells.filter((elem) => elem !== cell))
     }
 
+    function startNewGame() {
+        console.log("start new game")
+        startGame(id, group.members, cells)
+    }
+
     const components = [
         <GroupPageBingoView
             groupName = {groupName}
@@ -87,6 +93,7 @@ function GroupPage() {
             showHandleMembers = {() => {setComponentIndex(1)}}
             showHandleCells = {() => {setComponentIndex(2)}}
             showSettings = {() => {setComponentIndex(3)}}
+            startNewGame = {startNewGame}
         />
     </div> : userNotInGroup()
 }

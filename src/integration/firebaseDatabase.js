@@ -1,5 +1,6 @@
 import {collection, doc, getDoc, getDocs, getFirestore, onSnapshot, query, updateDoc, where, addDoc} from "firebase/firestore";
 import {app} from "./firebaseAuthentication.js";
+import {generateBoard} from "../model/gameLogic";
 
 // Initialize Cloud Firestore and get a reference to the service
 const database = getFirestore(app);
@@ -52,6 +53,11 @@ export async function createGroup(name, userID) {
     });
 }
 
-export async function startGame(members, cells,) {
-    //let memberData = members.map((uid) => {return {user: uid, cells: generateCells()}})
+export async function startGame(groupID, members, cells,) {
+    let memberData = members.map((uid) => {return {user: uid, cells: generateBoard(cells, 25)}});
+    let gameData = {
+        start_time: Date.now(),
+        boards: memberData
+    }
+    await setGroupField(groupID, gameData, "current_game");
 }

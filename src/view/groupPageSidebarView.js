@@ -37,7 +37,7 @@ function GroupPageSidebarView(props){
                     <div className={styles.buttonContainer}>
                         <button onClick={props.showHandleMembers}>Handle members</button>
                         <button onClick={props.showHandleCells}>Handle bingo cells</button>
-                        <button>Generate new boards</button>
+                        <button onClick={props.startNewGame}>Start new game</button>
                         <button onClick={props.showSettings}>Settings</button>
                     </div>
                 </div>
