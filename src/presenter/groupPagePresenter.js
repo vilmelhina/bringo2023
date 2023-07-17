@@ -6,7 +6,7 @@ import GroupPageHandleCellsView from "../view/groupPageHandleCellsView";
 import GroupPageSettingsView from "../view/groupPageSettingsView";
 import {useParams} from "react-router-dom";
 import {useRecoilState, useRecoilValue} from "recoil";
-import {userGroupsState} from "../model/userAtoms";
+import {userGroupsState, userIdState} from "../model/userAtoms";
 import {groupCellsState, groupState} from "../model/groupAtoms";
 import styles from "../styles/groupPage.module.css";
 import {startGame} from "../integration/firebaseDatabase";
@@ -14,6 +14,7 @@ import {startGame} from "../integration/firebaseDatabase";
 function GroupPage() {
     const [componentIndex, setComponentIndex] = React.useState(0);
     const groups = useRecoilValue(userGroupsState);
+    const userId = useRecoilValue(userIdState);
     const {id} = useParams();
     const group = useRecoilValue(groupState(id))
     const [cells, setCells] = useRecoilState(groupCellsState(id))
@@ -21,12 +22,8 @@ function GroupPage() {
     // TODO: actual values instead of dummy values
 
     const groupName = group.name;
-    const userCells = [...Array(25).keys()].map(element => {return {text: "cell" + element, done: false}});
-    const friendsProgress = [
-        {name: "name1", progress: [0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0]},
-        {name: "name2", progress: [0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0]},
-        {name: "name3", progress: [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0]}
-    ]
+    const userCells = group.current_game.boards.filter(x => x.user === userId)[0].cells;
+    const friendsProgress = group.current_game.boards.filter(x => x.user !== userId).map(x => {return {name: x.user.substring(0,8), progress: x.cells.map(y => y.done)}})
     const scoreBoard = [
         {name: "name1", score: 444},
         {name: "name2", score: 333},
